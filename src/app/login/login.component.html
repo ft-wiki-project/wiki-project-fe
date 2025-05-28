@@ -1,0 +1,28 @@
+<div class="login-container">
+    <h1>COOK SYSTEMS</h1>
+    <h2>A FINAL APP</h2>
+    
+    <div class="login-box">
+        <i class="fas fa-user-circle login-icon"></i>
+        <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <input type="text" 
+                       placeholder="Username" 
+                       [(ngModel)]="username" 
+                       name="username" 
+                       required>
+            </div>
+            <div class="form-group">
+                <input type="password" 
+                       placeholder="Password" 
+                       [(ngModel)]="password" 
+                       name="password" 
+                       required>
+            </div>
+            <div *ngIf="message" [class]="messageType">
+                {{ message }}
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</div>
