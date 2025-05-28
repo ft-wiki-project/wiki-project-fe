@@ -6,7 +6,7 @@ interface Project {
   id: number;
   name: string;
   description: string;
-  status: string;
+  active: boolean;
 }
 
 @Component({
@@ -21,18 +21,25 @@ export class ProjectsComponent {
   teamName: string = '';
   teamId: string = '';
 
-  constructor(private route: ActivatedRoute, private wikiApiService: WikiApiService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private wikiApiService: WikiApiService
+  ) {}
 
   async ngOnInit() {
-    this.teamId = this.route.snapshot.paramMap.get('teamId') || '';
-    this.teamName = this.route.snapshot.paramMap.get('teamName') || '';
+    this.route.queryParams.subscribe(params => {
+      this.teamName = params['teamName'];
+    });
 
-    try {
-      const data: any = await this.wikiApiService.getProjects(this.teamId);
-      this.projects = data;
-    } catch (error) {
-      console.error('Error loading projects:', error);
-    }
+    this.route.queryParams.subscribe(async params => {
+      this.teamId = params['teamId'];
+      try {
+        const data: any = await this.wikiApiService.getProjects(this.teamId);
+        this.projects = data;
+      } catch (error) {
+        console.error('Error loading projects:', error);
+      }
+    });
   }
 
   isActive(status: string): boolean {
