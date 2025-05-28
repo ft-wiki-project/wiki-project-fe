@@ -40,10 +40,6 @@ export class AnnouncementsComponent {
     const data = await this.wikiApiService.getAnnoucements(this.companyId);
     this.announcements = data as Announcement[];
 
-
-
-    
-
   }
 
 }
