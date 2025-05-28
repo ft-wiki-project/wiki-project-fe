@@ -27,7 +27,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
       }
     });
 
-    // Initialize with current data
     const currentUser = this.userService.getCurrentUser();
     if (currentUser) {
       this.userService.updateUserData(currentUser);
@@ -47,5 +46,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   isHomePage(): boolean {
     return this.router.url === "/";
+  }
+
+  isAdmin(): boolean {
+    const currentUser = this.userService.getCurrentUser();
+    return currentUser && currentUser.admin === "true";
   }
 }
