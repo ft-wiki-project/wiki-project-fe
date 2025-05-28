@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class WikiApiService {
   private baseUrl = "http://localhost:8080"
+  private userData: any;
 
   constructor(private http: HttpClient) { }
 
@@ -26,4 +27,10 @@ export class WikiApiService {
 
     return data;
   }
+
+  async getAnnoucements(companyId: string) {
+    let data = await this.http.get(`${this.baseUrl}/announcements/${companyId}`).toPromise();
+    return data;
+  }
+
 }
