@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  /* Background Colors */
+  --bg-color-primary: #051622;
+  --bg-color-secondary: #0B2D45;
+  --bg-color-wht: #ffffff;
+
+  /* Button Colors */
+  --primary-color-btn: #1BA098;
+  --secondary-color-btn: #DEB992;
+
+  /* Text Colors */
+  --text-color-primary: #1BA098;
+  --text-color-secondary: #DEB992;
+  --text-color-alert: #F24E1E;
+  --text-color-options: #5533FF;
+  --text-white: #ffffff;
+  --text-black: #000000;
+
+  /* Border Colors */
+  --border-color: #DEB992;
+
+  /* Shadow */
+  --box-shadow: -8px 8px 9px 0px #CBCBCB7D;
+  --box-shadow-nav: 0px 7px 7px 0px rgba(0, 0, 0, 0.415);
+  --box-shadow-sml: 0px 2px 8px 0px rgba(0, 0, 0, 0.415);
+  --box-shadow-btn: 2px 3px 2px 0px rgba(0, 0, 0, 0.415);
+}
