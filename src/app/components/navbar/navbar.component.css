@@ -54,28 +54,80 @@
   margin-right: 0.5rem;
 }
 
-/* Media Query for Mobile Responsiveness */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--text-color-secondary);
+  transition: all 0.3s ease;
+}
+
 @media screen and (max-width: 768px) {
   .navbar {
-    flex-direction: column;
+    flex-direction: row;
     padding: 1rem;
     gap: 1rem;
+    position: relative;
   }
 
   .nav-links {
-    width: 100%;
-    justify-content: space-around;
     gap: 0.5rem;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100px;
+    flex-direction: column;
+    background-color: var(--bg-color-secondary);
+    padding: 4rem 2rem;
+    transition: right 0.3s ease;
+    z-index: 99;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .nav-links a:last-child {
+    border-bottom: none;
   }
 
   .nav-links a {
     font-size: 0.9rem;
-    padding: 0.4rem 0.8rem;
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
+    border-radius: 0;
+    border-bottom: 1px solid var(--border-color);
   }
 
   .nav-left {
     width: 100%;
     justify-content: center;
-    margin-bottom: 0.5rem;
+    width: auto;
+    margin-bottom: 0;
+  }
+
+  .hamburger {
+    display: flex;
+    z-index: 100;
+    margin-left: auto;
+  }
+  
+  .folder-icon {
+    height: 2rem;
+    width: auto;
+  }
+
+  .user-info {
+    font-size: 1rem;
   }
 }
