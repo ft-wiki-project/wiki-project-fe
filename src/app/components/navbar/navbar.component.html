@@ -5,7 +5,14 @@
       <span>{{ firstName }} {{ lastInitial }}.</span>
     </div>
   </div>
-  <div class="nav-links">
+  
+  <div class="hamburger" (click)="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <div class="nav-links" [class.active]="isMenuOpen">
     <a routerLink="/announcements" routerLinkActive="active">Announcements</a>
     <a *ngIf="isAdmin()" routerLink="/select-company" routerLinkActive="active">Company</a>
     <a routerLink="/teams" routerLinkActive="active">Teams</a>

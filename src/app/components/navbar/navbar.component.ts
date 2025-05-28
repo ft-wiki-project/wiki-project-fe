@@ -12,6 +12,7 @@ import { UserService } from '../../services/user-service.service';
 export class NavbarComponent implements OnInit, OnDestroy {
   firstName: string = '';
   lastInitial: string = '';
+  isMenuOpen: boolean = false;
   private userSubscription: Subscription | undefined;
 
   constructor(
@@ -51,5 +52,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
   isAdmin(): boolean {
     const currentUser = this.userService.getCurrentUser();
     return currentUser && currentUser.admin === "true";
+  }
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 }
