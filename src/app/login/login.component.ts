@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { WikiApiService } from '../services/wiki-api.service';
 import { Router } from '@angular/router';
+import { UserService } from '../services/user-service.service';
 
 @Component({
   selector: 'app-login',
@@ -15,18 +16,20 @@ export class LoginComponent {
   message: string = '';
   messageType: string = '';
 
-  constructor(private wikiApiService: WikiApiService, private router: Router) { }
+  constructor(
+    private wikiApiService: WikiApiService,
+    private router: Router,
+    private userService: UserService
+  ) { }
 
   async onSubmit() {
     try {
       const response = await this.wikiApiService.userLogin(this.username, this.password);
-      console.log('Login successful:', response);
+      this.userService.updateUserData(response); // Use the service instead of directly setting localStorage
       this.message = 'Login successful!';
       this.messageType = 'success-message';
-      localStorage.setItem("user", JSON.stringify(response));
       setTimeout(() => {
         this.router.navigate(['/announcements']);
-        // or if they are an admin, navigate to the Companny Selection page.
       }, 1000);
     } catch (error) {
       console.error('Login failed:', error);
