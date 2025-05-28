@@ -1,1 +1,15 @@
-<p>navbar works!</p>
+<nav *ngIf="!isHomePage()" class="navbar">
+  <div class="nav-left">
+    <img src="assets/images/folder-icon.png" alt="Folder Icon" class="folder-icon">
+    <div class="user-info">
+      <span>{{ firstName }} {{ lastInitial }}.</span>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a routerLink="/announcements" routerLinkActive="active">Announcements</a>
+    <a *ngIf="isAdmin()" routerLink="/select-company" routerLinkActive="active">Company</a>
+    <a routerLink="/teams" routerLinkActive="active">Teams</a>
+    <a *ngIf="isAdmin()" routerLink="/user-registry" routerLinkActive="active">Users</a>
+    <a (click)="logout()" class="logout">Logout</a>
+  </div>
+</nav>
