@@ -7,6 +7,8 @@
   /* Button Colors */
   --primary-color-btn: #1BA098;
   --secondary-color-btn: #DEB992;
+  --button-hover: rgba(27, 160, 152, 0.8);
+  --button-hover-secondary: #DEB992;
 
   /* Text Colors */
   --text-color-primary: #1BA098;
@@ -19,9 +21,21 @@
   /* Border Colors */
   --border-color: #DEB992;
 
+  /* Border Radius */
+  --border-radius: 20px;
+
   /* Shadow */
-  --box-shadow: -8px 8px 9px 0px #CBCBCB7D;
+  --box-shadow: 7px 7px 9px 0px #CBCBCB7D;
   --box-shadow-nav: 0px 7px 7px 0px rgba(0, 0, 0, 0.415);
   --box-shadow-sml: 0px 2px 8px 0px rgba(0, 0, 0, 0.415);
   --box-shadow-btn: 2px 3px 2px 0px rgba(0, 0, 0, 0.415);
+}
+
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
 }
