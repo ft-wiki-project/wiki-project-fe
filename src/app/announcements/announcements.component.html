@@ -1,1 +1,14 @@
-<p>announcements works!</p>
+
+<div class="container">
+    <h1 class="page-title">Announcements</h1>
+    <hr class="divider" />
+  
+    <div class="announcement-card" *ngFor="let announcement of announcements">
+      <div class="card-header">
+        <span class="author">{{ announcement.author.profile.first }} {{ announcement.author.profile.last }}</span>
+        <span class="date">{{ announcement.date | date: 'longDate' }}</span>
+      </div>
+      <p class="message">{{ announcement.message }}</p>
+    </div>
+  </div>
+
