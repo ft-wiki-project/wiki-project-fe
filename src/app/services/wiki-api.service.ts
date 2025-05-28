@@ -33,4 +33,9 @@ export class WikiApiService {
     return data;
   }
 
+  async getTeams(userId: string) {
+    let data = await this.http.get(`${this.baseUrl}/teams/${userId}/users`).toPromise();
+    return data;
+  }
+
 }
