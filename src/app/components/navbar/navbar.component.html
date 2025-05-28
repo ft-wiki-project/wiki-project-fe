@@ -7,7 +7,9 @@
   </div>
   <div class="nav-links">
     <a routerLink="/announcements" routerLinkActive="active">Announcements</a>
+    <a *ngIf="isAdmin()" routerLink="/select-company" routerLinkActive="active">Company</a>
     <a routerLink="/teams" routerLinkActive="active">Teams</a>
+    <a *ngIf="isAdmin()" routerLink="/user-registry" routerLinkActive="active">Users</a>
     <a (click)="logout()" class="logout">Logout</a>
   </div>
 </nav>
