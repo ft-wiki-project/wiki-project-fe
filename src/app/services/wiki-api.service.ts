@@ -38,4 +38,9 @@ export class WikiApiService {
     return data;
   }
 
+  async getProjects(teamId: string) {
+    let data = await this.http.get(`${this.baseUrl}/projects/${teamId}`).toPromise();
+    return data;
+  }
+
 }
