@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class WikiApiService {
-  private baseUrl = "localhost:8080"
+  private baseUrl = "http://localhost:8080"
 
   constructor(private http: HttpClient) { }
 
@@ -22,7 +22,7 @@ export class WikiApiService {
       }
     }
 
-    let data = await this.http.post(`${this.baseUrl}/login`, requestBody, httpOptions).toPromise();
+    let data = await this.http.post(`${this.baseUrl}/users/login`, requestBody, httpOptions).toPromise();
 
     return data;
   }
