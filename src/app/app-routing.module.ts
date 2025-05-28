@@ -10,7 +10,7 @@ import { UserRegistryComponent } from './user-registry/user-registry.component';
 const routes: Routes = [
   { path: "", component: LoginComponent },
   { path: "announcements", component: AnnouncementsComponent },
-  { path: "projects", component: ProjectsComponent },
+  { path: "projects/:id", component: ProjectsComponent },
   { path: "teams", component: TeamsComponent },
   { path: "select-company", component: SelectCompanyComponent },
   { path: "user-registry", component: UserRegistryComponent }
