@@ -8,6 +8,7 @@ interface Project {
   name: string;
   description: string;
   active: boolean;
+  teamId: string;
 }
 
 @Component({
@@ -22,6 +23,7 @@ export class ProjectsComponent {
   teamName: string = '';
   teamId: string = '';
   showEditModal = false;
+  showCreateModal = false;
   selectedProject: Project | null = null;
 
   constructor(
@@ -59,6 +61,11 @@ export class ProjectsComponent {
     this.showEditModal = true;
   }
 
+  openCreateModal() {
+    this.showCreateModal = true;
+  }
+
+
   async handleSave(updatedProject: Project) {
     console.log('Saving project:', updatedProject);
     try {
@@ -84,4 +91,24 @@ export class ProjectsComponent {
     const currentUser = this.userService.getCurrentUser();
     return currentUser && currentUser.admin === "true";
   }
+
+  async handleCreateSave(createdProject: Project) {
+    createdProject.teamId = this.teamId;
+    console.log('Saving project:', createdProject);
+    try {
+      await this.wikiApiService.createProject(createdProject);
+      const data: any = await this.wikiApiService.getProjects(this.teamId);
+      this.projects = this.filterProjectsByUserRole(data);
+      this.showCreateModal = false;
+    } catch (error) {
+      console.error('Error creating project:', error);
+    }
+  }
+
+  closeCreateModal() {
+    this.showCreateModal = false;
+    this.selectedProject = null;
+  }
+
+
 }

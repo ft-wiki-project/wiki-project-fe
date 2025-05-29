@@ -13,6 +13,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SelectCompanyComponent } from './select-company/select-company.component';
 import { UserRegistryComponent } from './user-registry/user-registry.component';
 import { EditProjectModalComponent } from './components/edit-project-modal/edit-project-modal.component';
+import { CreateProjectModalComponent } from './components/create-project-modal/create-project-modal.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { EditProjectModalComponent } from './components/edit-project-modal/edit-
     NavbarComponent,
     SelectCompanyComponent,
     UserRegistryComponent,
-    EditProjectModalComponent
+    EditProjectModalComponent,
+    CreateProjectModalComponent
   ],
   imports: [
     BrowserModule,

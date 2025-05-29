@@ -1,0 +1,30 @@
+<div class="modal-overlay">
+    <div class="modal-content">
+      <h2>Create Project</h2>
+      <form (ngSubmit)="onSave()">
+        <div class="form-group">
+          <label for="name">Project Name</label>
+          <input 
+            type="text" 
+            id="name" 
+            [(ngModel)]="createdProject.name" 
+            name="name" 
+            required>
+        </div>
+  
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea 
+            id="description" 
+            [(ngModel)]="createdProject.description" 
+            name="description" 
+            required></textarea>
+        </div>
+  
+        <div class="modal-actions">
+          <button type="button" class="cancel-btn" (click)="onClose()">Cancel</button>
+          <button type="submit" class="save-btn">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>

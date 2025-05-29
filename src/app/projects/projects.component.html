@@ -3,7 +3,7 @@
 
   <div class="page-header">
     <h1 class="page-title">Projects for {{ teamName }}</h1>
-    <button *ngIf="isAdmin()" class="new-btn">New</button>
+    <button *ngIf="isAdmin()" class="new-btn" (click)="openCreateModal()">New</button>
   </div>
 
   <div class="project-list">
@@ -25,5 +25,11 @@
       (close)="closeModal()"
       (save)="handleSave($event)">
     </app-edit-project-modal>
+
+    <app-create-project-modal
+      *ngIf="showCreateModal"
+      (close)="closeCreateModal()"
+      (save)="handleCreateSave($event)">
+    </app-create-project-modal>
   </div>
 </div>
