@@ -1,1 +1,39 @@
-<p>user-registry works!</p>
+<div class="registry-container">
+  <h1 class="page-title">User Registry</h1>
+  <p class="page-description">A general view of the members in your organization.</p>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Active</th>
+          <th>Admin</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.profile.first }} {{ user.profile.last }}</td>
+          <td>{{ user.profile.email }}</td>
+          <td>
+            <span [class.active]="user.active === 'true'" [class.inactive]="user.active === 'false'">
+              {{ user.active === 'true' ? 'Yes' : 'No' }}
+            </span>
+          </td>
+          <td>
+            <span [class.admin]="user.admin === 'true'" [class.not-admin]="user.admin === 'false'">
+              {{ user.admin === 'true' ? 'Yes' : 'No' }}
+            </span>
+          </td>
+          <td>
+            <span [class.status-active]="user.status === 'JOINED'"
+                  [class.status-pending]="user.status === 'PENDING'">
+              {{ user.status }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
