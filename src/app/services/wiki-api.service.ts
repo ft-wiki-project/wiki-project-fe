@@ -102,4 +102,17 @@ export class WikiApiService {
     let data = await this.http.get(`${this.baseUrl}/companies/${companyId}/users`).toPromise();
     return data;
   }
+
+  async createUser(userData: any) {
+    const requestBody = userData;
+
+    const httpOptions = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    let data = await this.http.post(`${this.baseUrl}/users/`, requestBody, httpOptions).toPromise();
+    return data;
+  }
 }
