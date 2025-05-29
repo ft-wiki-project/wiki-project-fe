@@ -68,3 +68,32 @@
     font-size: 0.9rem;
     box-shadow: var(--box-shadow-sml);
   }
+
+  .create-team-card {
+    width: 250px;
+    height: 185px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .create-team-card:hover {
+    transform: scale(1.02);
+  }
+  
+  .create-icon {
+    font-size: 3rem;
+    color: var(--secondary-color-btn);
+    margin-bottom: 0.5rem;
+  }
+  
+  .create-label {
+    font-size: 1rem;
+    color: var(--text-white);
+  }
