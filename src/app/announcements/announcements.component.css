@@ -21,13 +21,14 @@
   
   .announcement-card {
     background-color: var(--bg-color-secondary);
+    border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
     padding: 1.5rem;
     padding-left: 4rem;
     padding-right: 4rem;
     margin: 1.5rem auto;
     max-width: 800px;
-    box-shadow: var(--box-shadow-sml);
+    box-shadow: var(--box-shadow-xs);
   }
   
   .card-header {
@@ -55,8 +56,8 @@
   }
 
   .new-announcement-btn-wrapper {
-    text-align: right;
-    margin: -1.5rem 3.5rem 1rem 0;
+    text-align: center;
+    margin: 1rem;
   }
   
   .new-announcement-btn {
@@ -74,4 +75,8 @@
   
   .new-announcement-btn:hover {
     background-color: var(--button-hover);
+  }
+
+  .new-announcement-btn:active {
+    background-color: var(--primary-color-btn);
   }
