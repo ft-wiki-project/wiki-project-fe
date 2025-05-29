@@ -9,9 +9,16 @@
             <span class="project-status-active" *ngIf="project.active">Active</span>
             <span class="project-status-inactive" *ngIf="!project.active">Inactive</span>
           </div>
-          <button class="edit-btn">Edit</button>
+          <button class="edit-btn" (click)="openEditModal(project)">Edit</button>
         </div>
         <p class="project-description">{{ project.description }}</p>
       </div>
+
+      <app-edit-project-modal
+        *ngIf="showEditModal"
+        [project]="selectedProject"
+        (close)="closeModal()"
+        (save)="handleSave($event)">
+      </app-edit-project-modal>
     </div>
   </div>
