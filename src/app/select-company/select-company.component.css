@@ -27,7 +27,7 @@ select {
   border: 2px solid var(--border-color);
   border-radius: var(--border-radius);
   background-color: var(--bg-color-secondary);
-  color: var(--text-color-secondary);
+  color: var(--text-color-options);
   font-size: 1.1rem;
   cursor: pointer;
   box-shadow: var(--box-shadow-sml);
