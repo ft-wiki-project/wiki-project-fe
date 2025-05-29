@@ -1,6 +1,7 @@
 <div class="registry-container">
   <h1 class="page-title">User Registry</h1>
   <p class="page-description">A general view of the members in your organization.</p>
+  <button class="create-btn" (click)="openCreateModal()">Create User</button>
   <div class="table-container">
     <table>
       <thead>
@@ -36,4 +37,9 @@
       </tbody>
     </table>
   </div>
+  <app-create-user-modal
+    *ngIf="showCreateModal"
+    (close)="closeCreateModal()"
+    (save)="handleCreateUser($event)">
+  </app-create-user-modal>
 </div>
