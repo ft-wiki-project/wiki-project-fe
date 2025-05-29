@@ -1,0 +1,52 @@
+<p>create-team-modal works!</p>
+<div class="modal-overlay">
+  <div class="modal-content">
+    <h2>Create New Team</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Team Name</label>
+        <input 
+          type="text" 
+          id="name" 
+          [(ngModel)]="teamData.name" 
+          name="name" 
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea 
+          id="description" 
+          [(ngModel)]="teamData.description" 
+          name="description" 
+          required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="members">Select Members</label>
+        <select 
+          id="members" 
+          [(ngModel)]="selectedUserId" 
+          (change)="onUserSelect()" 
+          name="members">
+          <option value="">Select a member...</option>
+          <option *ngFor="let user of companyUsers" [value]="user.id">
+            {{user.profile.first}} {{user.profile.last}}
+          </option>
+        </select>
+      </div>
+
+      <div class="selected-users">
+        <div *ngFor="let user of selectedUsers" class="user-tag">
+          <span>{{user.profile.first}} {{user.profile.last}}</span>
+          <button type="button" class="remove-user" (click)="removeUser(user.id)">×</button>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="cancel-btn" (click)="onClose()">Cancel</button>
+        <button type="submit" class="save-btn">Create Team</button>
+      </div>
+    </form>
+  </div>
+</div>
