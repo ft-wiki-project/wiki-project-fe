@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { WikiApiService } from '../services/wiki-api.service';
 import { Router } from '@angular/router';
+import { UserService } from '../services/user-service.service';
 
 interface Announcement {
   date: string;
@@ -27,7 +28,11 @@ export class AnnouncementsComponent {
   announcements: Announcement[] = [];
   
 
-  constructor(private wikiApiService: WikiApiService, private router: Router) { }
+  constructor(
+    private wikiApiService: WikiApiService, 
+    private router: Router, 
+    private userService: UserService
+  ) {}
 
   
   async ngOnInit() {
@@ -40,6 +45,11 @@ export class AnnouncementsComponent {
     const data = await this.wikiApiService.getAnnoucements(this.companyId);
     this.announcements = data as Announcement[];
 
+  }
+
+  isAdmin(): boolean {
+    const currentUser = this.userService.getCurrentUser();
+    return currentUser && currentUser.admin === "true";
   }
 
 }
