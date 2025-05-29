@@ -56,6 +56,19 @@ export class WikiApiService {
     return data;
   }
 
+  async createProject(projectData: any) {
+    const requestBody = projectData;
+
+    const httpOptions = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    let data = await this.http.post(`${this.baseUrl}/projects`, requestBody, httpOptions).toPromise();
+    return data;
+  }
+
   async getAllUsersForACompany(companyId: string) {
     let data = await this.http.get(`${this.baseUrl}/companies/${companyId}/users`).toPromise();
     return data;
@@ -71,6 +84,8 @@ export class WikiApiService {
     };
 
     let data = await this.http.post(`${this.baseUrl}/teams`, requestBody, httpOptions).toPromise();
+    return data;
+  }
 
   async getTeamsByCompanyId(companyId: string) {
     let data = await this.http.get(`${this.baseUrl}/teams/${companyId}`).toPromise();
