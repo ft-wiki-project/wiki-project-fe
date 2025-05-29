@@ -97,4 +97,9 @@ export class WikiApiService {
     let data = await this.http.get(`${this.baseUrl}/companies/${userId}`).toPromise();
     return data;
   }
+
+  async getCompanyUsers(companyId: string) {
+    let data = await this.http.get(`${this.baseUrl}/companies/${companyId}/users`).toPromise();
+    return data;
+  }
 }

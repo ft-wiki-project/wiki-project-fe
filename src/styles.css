@@ -14,6 +14,7 @@
   --text-color-primary: #1BA098;
   --text-color-secondary: #DEB992;
   --text-color-alert: #F24E1E;
+  --text-color-success: #11fa00;
   --text-color-alert-dark: #d03304;
   --text-color-options: #5533FF;
   --text-white: #ffffff;
@@ -24,6 +25,7 @@
 
   /* Border Radius */
   --border-radius: 20px;
+  --border-radius-sml: 10px;
 
   /* Shadow */
   --box-shadow: 7px 7px 9px 0px #CBCBCB7D;
