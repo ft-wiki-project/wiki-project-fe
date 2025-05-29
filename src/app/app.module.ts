@@ -14,6 +14,7 @@ import { SelectCompanyComponent } from './select-company/select-company.componen
 import { UserRegistryComponent } from './user-registry/user-registry.component';
 import { EditProjectModalComponent } from './components/edit-project-modal/edit-project-modal.component';
 import { CreateProjectModalComponent } from './components/create-project-modal/create-project-modal.component';
+import { CreateUserModalComponent } from './components/create-user-modal/create-user-modal.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CreateProjectModalComponent } from './components/create-project-modal/c
     SelectCompanyComponent,
     UserRegistryComponent,
     EditProjectModalComponent,
-    CreateProjectModalComponent
+    CreateProjectModalComponent,
+    CreateUserModalComponent
   ],
   imports: [
     BrowserModule,
