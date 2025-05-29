@@ -71,6 +71,11 @@
   transition: all 0.3s ease;
 }
 
+.user-role {
+  font-size: .85rem;
+  color: var(--text-color-alert-dark);
+}
+
 @media screen and (max-width: 768px) {
   .navbar {
     flex-direction: row;
@@ -129,5 +134,9 @@
 
   .user-info {
     font-size: 1rem;
+  }
+
+  .user-role {
+    font-size: .75rem;
   }
 }
