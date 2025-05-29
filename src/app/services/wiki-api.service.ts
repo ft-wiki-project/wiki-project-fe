@@ -55,4 +55,22 @@ export class WikiApiService {
     let data = await this.http.patch(`${this.baseUrl}/projects/${projectId}`, requestBody, httpOptions).toPromise();
     return data;
   }
+
+  async getAllUsersForACompany(companyId: string) {
+    let data = await this.http.get(`${this.baseUrl}/companies/${companyId}/users`).toPromise();
+    return data;
+  }
+
+  async createTeam(teamData: any) {
+    const requestBody = teamData;
+
+    const httpOptions = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    let data = await this.http.post(`${this.baseUrl}/teams`, requestBody, httpOptions).toPromise();
+    return data;
+  }
 }
