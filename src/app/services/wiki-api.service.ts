@@ -115,4 +115,17 @@ export class WikiApiService {
     let data = await this.http.post(`${this.baseUrl}/users/`, requestBody, httpOptions).toPromise();
     return data;
   }
+
+  async createAnnouncement(announcementData: any) {
+    const requestBody = announcementData;
+
+    const httpOptions = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    let data = await this.http.post(`${this.baseUrl}/announcements`, requestBody, httpOptions).toPromise();
+    return data;
+  }
 }
