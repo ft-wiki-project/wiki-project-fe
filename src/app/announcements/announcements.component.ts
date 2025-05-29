@@ -25,6 +25,7 @@ interface Announcement {
 export class AnnouncementsComponent {
 
   companyId: string = ''
+  adminCompanyId: string = ''
   announcements: Announcement[] = [];
   
 
@@ -36,15 +37,20 @@ export class AnnouncementsComponent {
 
   
   async ngOnInit() {
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    if(user.companies[0].id) {
-      this.companyId = user.companies[0].id
-      console.log(this.companyId);
+    if (this.isAdmin()) {
+      this.adminCompanyId = localStorage.getItem('selectedCompanyId') || '';
+      const data = await this.wikiApiService.getAnnoucements(this.adminCompanyId);
+      this.announcements = data as Announcement[];
+    } else {
+      const user = JSON.parse(localStorage.getItem('user') || '{}');
+      if(user.companies[0].id) {
+        this.companyId = user.companies[0].id
+        console.log(this.companyId);
+      }
+  
+      const data = await this.wikiApiService.getAnnoucements(this.companyId);
+      this.announcements = data as Announcement[]
     }
-
-    const data = await this.wikiApiService.getAnnoucements(this.companyId);
-    this.announcements = data as Announcement[];
-
   }
 
   isAdmin(): boolean {
