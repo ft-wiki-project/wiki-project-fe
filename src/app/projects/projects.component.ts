@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WikiApiService } from '../services/wiki-api.service';
+import { UserService } from '../services/user-service.service';
 
 interface Project {
   id: number;
@@ -25,7 +26,8 @@ export class ProjectsComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private wikiApiService: WikiApiService
+    private wikiApiService: WikiApiService,
+    private userService: UserService
   ) {}
 
   async ngOnInit() {
@@ -70,5 +72,10 @@ export class ProjectsComponent {
 
   isActive(status: string): boolean {
     return status.toUpperCase() === 'ACTIVE'
+  }
+
+  isAdmin(): boolean {
+    const currentUser = this.userService.getCurrentUser();
+    return currentUser && currentUser.admin === "true";
   }
 }
