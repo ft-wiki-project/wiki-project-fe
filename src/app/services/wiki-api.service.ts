@@ -87,9 +87,6 @@ export class WikiApiService {
     return data;
   }
 
-    return data;
-  }
-
   async getTeamsByCompanyId(companyId: string) {
     let data = await this.http.get(`${this.baseUrl}/teams/${companyId}`).toPromise();
 
