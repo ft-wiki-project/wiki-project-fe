@@ -30,10 +30,13 @@ interface Team {
   templateUrl: './teams.component.html',
   styleUrls: ['./teams.component.css']
 })
+
 export class TeamsComponent {
   teams: Team[] = [];
   userId: string = '';
   adminCompanyId: string = '';
+  showCreateModal = false;
+  companyUsers: User[] = [];
 
   constructor(
     private wikiApiService: WikiApiService,
@@ -45,6 +48,9 @@ export class TeamsComponent {
     this.userId = currentUser.id;
 
     this.adminCompanyId = localStorage.getItem('selectedCompanyId') || '';
+    if (this.adminCompanyId) {
+      await this.loadCompanyUsers();
+    }
 
     if (this.isAdmin()) {
       try {
@@ -63,10 +69,36 @@ export class TeamsComponent {
     }
   }
 
+  async loadCompanyUsers() {
+    try {
+      const data: any = await this.wikiApiService.getCompanyUsers(this.adminCompanyId);
+      this.companyUsers = data;
+    } catch (error) {
+      console.error('Error loading company users:', error);
+    }
+  }
+
   isAdmin(): boolean {
     const currentUser = this.userService.getCurrentUser();
     return currentUser && currentUser.admin === "true";
   }
 
+  openCreateModal() {
+    this.showCreateModal = true;
+  }
 
+  closeCreateModal() {
+    this.showCreateModal = false;
+  }
+
+  async handleCreateTeam(teamData: any) {
+    try {
+      await this.wikiApiService.createTeam(teamData);
+      const data: any = await this.wikiApiService.getTeamsByCompanyId(this.adminCompanyId);
+      this.teams = data;
+      this.showCreateModal = false;
+    } catch (error) {
+      console.error('Error creating team:', error);
+    }
+  }
 }

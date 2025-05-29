@@ -15,6 +15,7 @@ import { UserRegistryComponent } from './user-registry/user-registry.component';
 import { EditProjectModalComponent } from './components/edit-project-modal/edit-project-modal.component';
 import { CreateProjectModalComponent } from './components/create-project-modal/create-project-modal.component';
 import { CreateUserModalComponent } from './components/create-user-modal/create-user-modal.component';
+import { CreateTeamModalComponent } from './components/create-team-modal/create-team-modal.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CreateUserModalComponent } from './components/create-user-modal/create-
     UserRegistryComponent,
     EditProjectModalComponent,
     CreateProjectModalComponent,
-    CreateUserModalComponent
+    CreateUserModalComponent,
+    CreateTeamModalComponent
   ],
   imports: [
     BrowserModule,
