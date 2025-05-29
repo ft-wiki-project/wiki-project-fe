@@ -2,16 +2,23 @@
 <div class="container">
     <h1 class="page-title">Announcements</h1>
     <div class="new-announcement-btn-wrapper" *ngIf="isAdmin()">
-      <button class="new-announcement-btn">New</button>
+      <button class="new-announcement-btn" (click)="openCreateModal()">New</button>
     </div>
     <hr class="divider" />
   
     <div class="announcement-card" *ngFor="let announcement of announcements">
       <div class="card-header">
-        <span class="author">{{ announcement.author.profile.first }} {{ announcement.author.profile.last }}</span>
+        <span class="author">{{ announcement.author.profile.first }}, {{ announcement.title }}</span>
         <span class="date">{{ announcement.date | date: 'longDate' }}</span>
       </div>
       <p class="message">{{ announcement.message }}</p>
     </div>
+
+    <app-create-announcement-modal
+      *ngIf="showCreateModal"
+      [companyId]="isAdmin() ? adminCompanyId : companyId"
+      (close)="closeCreateModal()"
+      (save)="handleCreateAnnouncement($event)">
+    </app-create-announcement-modal>
   </div>
 
