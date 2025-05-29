@@ -22,9 +22,17 @@
         </div>
       </div>
     </div>
-    <div class="create-team-card" *ngIf="isAdmin()">
+    <div class="create-team-card" *ngIf="isAdmin()" (click)="openCreateModal()">
       <div class="create-icon">+</div>
       <div class="create-label">New Team</div>
     </div>
+
+    <app-create-team-modal
+      *ngIf="showCreateModal"
+      [companyUsers]="companyUsers"
+      [companyId]="adminCompanyId"
+      (close)="closeCreateModal()"
+      (save)="handleCreateTeam($event)">
+    </app-create-team-modal>
   </div>
 </div>
