@@ -39,12 +39,20 @@ export class ProjectsComponent {
       this.teamId = params['teamId'];
       try {
         const data: any = await this.wikiApiService.getProjects(this.teamId);
-        this.projects = data;
+        this.projects = this.filterProjectsByUserRole(data);
       } catch (error) {
         console.error('Error loading projects:', error);
       }
     });
   }
+
+  private filterProjectsByUserRole(projects: Project[]): Project[] {
+  const isAdmin = this.isAdmin();
+  if (isAdmin) {
+    return projects;
+  }
+  return projects.filter(project => project.active);
+}
 
   openEditModal(project: Project) {
     this.selectedProject = { ...project };
@@ -55,10 +63,8 @@ export class ProjectsComponent {
     console.log('Saving project:', updatedProject);
     try {
       await this.wikiApiService.updateProject(updatedProject.id.toString(), updatedProject);
-      const index = this.projects.findIndex(p => p.id === updatedProject.id);
-      if (index !== -1) {
-        this.projects[index] = updatedProject;
-      }
+      const data: any = await this.wikiApiService.getProjects(this.teamId);
+      this.projects = this.filterProjectsByUserRole(data);
       this.showEditModal = false;
     } catch (error) {
       console.error('Error updating project:', error);
