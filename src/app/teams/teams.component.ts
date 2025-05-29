@@ -50,4 +50,9 @@ export class TeamsComponent {
       console.error('Error fetching teams:', error);
     }
   }
+
+  isAdmin(): boolean {
+    const currentUser = this.userService.getCurrentUser();
+    return currentUser && currentUser.admin === "true";
+  }
 }
