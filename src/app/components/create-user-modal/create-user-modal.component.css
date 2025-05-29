@@ -1,0 +1,127 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: var(--bg-color-secondary);
+  padding: 2rem;
+  padding-top: 0rem;
+  border-radius: var(--border-radius);
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--box-shadow-xs);
+}
+
+h2 {
+  color: var(--text-color-primary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 6rem;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: .8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-row .form-group {
+  flex: 1;
+  margin-bottom: 0;
+  max-width: 40%;
+}
+
+.form-group:not(.form-row .form-group) {
+  width: 100%;
+}
+
+label {
+  color: var(--text-color-secondary);
+  margin-bottom: 0.5rem;
+  width: 100%;
+  text-align: left;
+}
+
+input, select {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--bg-color-primary);
+  color: var(--text-white);
+}
+
+/* Media query for mobile view */
+@media screen and (max-width: 770px) {
+
+  .h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: .5rem;
+    margin-bottom: .5rem;
+  }
+
+  .form-row .form-group {
+    max-width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  input, select {
+    width: 72%;
+    padding: 0.5rem;
+  }
+
+  label {
+    width: 80%;
+  }
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.cancel-btn, .save-btn {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  width: 150px;
+}
+
+.cancel-btn {
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-color-secondary);
+}
+
+.save-btn {
+  background-color: var(--primary-color-btn);
+  color: var(--text-white);
+}
