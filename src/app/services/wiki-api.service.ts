@@ -43,4 +43,16 @@ export class WikiApiService {
     return data;
   }
 
+  async updateProject(projectId: string, projectData: any) {
+    const requestBody = projectData;
+
+    const httpOptions = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    let data = await this.http.patch(`${this.baseUrl}/projects/${projectId}`, requestBody, httpOptions).toPromise();
+    return data;
+  }
 }
