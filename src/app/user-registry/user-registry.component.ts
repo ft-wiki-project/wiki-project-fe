@@ -25,6 +25,7 @@ interface User {
 
 export class UserRegistryComponent implements OnInit {
   users: User[] = [];
+  showCreateModal = false;
 
   constructor(private wikiApiService: WikiApiService) {}
 
@@ -39,5 +40,28 @@ export class UserRegistryComponent implements OnInit {
     } catch (error) {
       console.error('Error loading users:', error);
     }
+  }
+
+  async handleCreateUser(userData: any) {
+    try {
+      await this.wikiApiService.createUser(userData);
+      this.showCreateModal = false;
+      // Refresh user list
+      const companyId = localStorage.getItem('selectedCompanyId');
+      if (companyId) {
+        const data: any = await this.wikiApiService.getCompanyUsers(companyId);
+        this.users = data;
+      }
+    } catch (error) {
+      console.error('Error creating user:', error);
+    }
+  }
+
+  openCreateModal() {
+    this.showCreateModal = true;
+  }
+
+  closeCreateModal() {
+    this.showCreateModal = false;
   }
 }
