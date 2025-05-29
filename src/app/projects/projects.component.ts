@@ -20,6 +20,8 @@ export class ProjectsComponent {
   projects: Project[] = [];
   teamName: string = '';
   teamId: string = '';
+  showEditModal = false;
+  selectedProject: Project | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -42,10 +44,31 @@ export class ProjectsComponent {
     });
   }
 
+  openEditModal(project: Project) {
+    this.selectedProject = { ...project };
+    this.showEditModal = true;
+  }
+
+  async handleSave(updatedProject: Project) {
+    console.log('Saving project:', updatedProject);
+    try {
+      await this.wikiApiService.updateProject(updatedProject.id.toString(), updatedProject);
+      const index = this.projects.findIndex(p => p.id === updatedProject.id);
+      if (index !== -1) {
+        this.projects[index] = updatedProject;
+      }
+      this.showEditModal = false;
+    } catch (error) {
+      console.error('Error updating project:', error);
+    }
+  }
+
+  closeModal() {
+    this.showEditModal = false;
+    this.selectedProject = null;
+  }
+
   isActive(status: string): boolean {
     return status.toUpperCase() === 'ACTIVE'
   }
-
-
-
 }
