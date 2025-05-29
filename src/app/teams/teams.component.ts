@@ -33,6 +33,7 @@ interface Team {
 export class TeamsComponent {
   teams: Team[] = [];
   userId: string = '';
+  adminCompanyId: string = '';
 
   constructor(
     private wikiApiService: WikiApiService,
@@ -43,11 +44,25 @@ export class TeamsComponent {
     const currentUser = this.userService.getCurrentUser();
     this.userId = currentUser.id;
 
-    try {
-      const data: any = await this.wikiApiService.getTeams(this.userId);
-      this.teams = data;
-    } catch (error) {
-      console.error('Error fetching teams:', error);
+    this.adminCompanyId = currentUser.companies[0]?.id || '';
+
+    if (this.isAdmin()) {
+      try {
+        // need to refactor this to use admins currently slected company.
+        // likely getting it from local storage or userService
+        // For now, assuming the first company in the user's companies array
+        const data: any = await this.wikiApiService.getTeamsByCompanyId(this.adminCompanyId);
+        this.teams = data;
+      } catch (error) {
+        console.error('Error fetching teams:', error);
+      }
+    } else {
+      try {
+        const data: any = await this.wikiApiService.getTeams(this.userId);
+        this.teams = data;
+      } catch (error) {
+        console.error('Error fetching teams:', error);
+      }
     }
   }
 
@@ -55,4 +70,6 @@ export class TeamsComponent {
     const currentUser = this.userService.getCurrentUser();
     return currentUser && currentUser.admin === "true";
   }
+
+
 }

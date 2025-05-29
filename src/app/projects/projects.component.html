@@ -1,24 +1,29 @@
 <div class="projects-container">
-    <a class="back-link" routerLink="/teams">&lt; Back</a>
-    <h1 class="page-title">Projects for {{ teamName }}</h1>
-    <div class="project-list">
-      <div class="project-card" *ngFor="let project of projects">
-        <div class="project-header">
-          <div class="project-info">
-            <h2 class="project-title">{{ project.name }}</h2>
-            <span class="project-status-active" *ngIf="project.active">Active</span>
-            <span class="project-status-inactive" *ngIf="!project.active">Inactive</span>
-          </div>
-          <button class="edit-btn" (click)="openEditModal(project)">Edit</button>
-        </div>
-        <p class="project-description">{{ project.description }}</p>
-      </div>
+  <a class="back-link" routerLink="/teams">&lt; Back</a>
 
-      <app-edit-project-modal
-        *ngIf="showEditModal"
-        [project]="selectedProject"
-        (close)="closeModal()"
-        (save)="handleSave($event)">
-      </app-edit-project-modal>
-    </div>
+  <div class="page-header">
+    <h1 class="page-title">Projects for {{ teamName }}</h1>
+    <button *ngIf="isAdmin()" class="new-btn">New</button>
   </div>
+
+  <div class="project-list">
+    <div class="project-card" *ngFor="let project of projects">
+      <div class="project-header">
+        <div class="project-info">
+          <h2 class="project-title">{{ project.name }}</h2>
+          <span class="project-status-active" *ngIf="project.active">Active</span>
+          <span class="project-status-inactive" *ngIf="!project.active">Inactive</span>
+        </div>
+        <button class="edit-btn" (click)="openEditModal(project)">Edit</button>
+      </div>
+      <p class="project-description">{{ project.description }}</p>
+    </div>
+
+    <app-edit-project-modal
+      *ngIf="showEditModal"
+      [project]="selectedProject"
+      (close)="closeModal()"
+      (save)="handleSave($event)">
+    </app-edit-project-modal>
+  </div>
+</div>
