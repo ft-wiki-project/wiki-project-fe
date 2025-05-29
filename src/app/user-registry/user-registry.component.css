@@ -16,7 +16,7 @@
 .page-description {
   color: var(--text-color-secondary);
   font-size: 1.1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .table-container {
@@ -73,6 +73,17 @@ tr:last-child td {
 
 .status-disabled {
   color: var(--text-color-alert);
+}
+
+.create-btn {
+  background-color: var(--primary-color-btn);
+  color: var(--text-white);
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: var(--border-radius-sml);
+  cursor: pointer;
+  box-shadow: var(--box-shadow-btn);
+  margin-bottom: 1rem;
 }
 
 @media screen and (max-width: 768px) {
