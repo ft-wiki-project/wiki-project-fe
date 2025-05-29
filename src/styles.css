@@ -26,12 +26,13 @@
   /* Border Radius */
   --border-radius: 20px;
   --border-radius-sml: 10px;
+  --border-radius-xs: 5px;
 
   /* Shadow */
   --box-shadow: 7px 7px 9px 0px #CBCBCB7D;
   --box-shadow-nav: 0px 7px 7px 0px rgba(0, 0, 0, 0.415);
   --box-shadow-sml: 4px 5px 9px 0px #CBCBCB7D;
-  --box-shadow-btn: 2px 3px 2px 0px rgba(0, 0, 0, 0.415);
+  --box-shadow-xs: 2px 2px 9px 0px #CBCBCB7D;
 }
 
 
