@@ -1,6 +1,9 @@
 
 <div class="container">
     <h1 class="page-title">Announcements</h1>
+    <div class="new-announcement-btn-wrapper" *ngIf="isAdmin()">
+      <button class="new-announcement-btn">New</button>
+    </div>
     <hr class="divider" />
   
     <div class="announcement-card" *ngFor="let announcement of announcements">

@@ -53,3 +53,25 @@
     color: var(--text-white);
     white-space: pre-wrap;
   }
+
+  .new-announcement-btn-wrapper {
+    text-align: right;
+    margin: -1.5rem 3.5rem 1rem 0;
+  }
+  
+  .new-announcement-btn {
+    background-color: var(--primary-color-btn);
+    color: var(--text-white);
+    border: none;
+    padding: 0.4rem 1.2rem;
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: var(--box-shadow-btn);
+    transition: background-color 0.3s ease;
+  }
+  
+  .new-announcement-btn:hover {
+    background-color: var(--button-hover);
+  }
