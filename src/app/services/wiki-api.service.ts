@@ -56,8 +56,25 @@ export class WikiApiService {
     return data;
   }
 
+  async getAllUsersForACompany(companyId: string) {
+    let data = await this.http.get(`${this.baseUrl}/companies/${companyId}/users`).toPromise();
+    return data;
+  }
+
+  async createTeam(teamData: any) {
+    const requestBody = teamData;
+
+    const httpOptions = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    let data = await this.http.post(`${this.baseUrl}/teams`, requestBody, httpOptions).toPromise();
+
   async getTeamsByCompanyId(companyId: string) {
     let data = await this.http.get(`${this.baseUrl}/teams/${companyId}`).toPromise();
+
     return data;
   }
 }
