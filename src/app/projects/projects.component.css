@@ -82,3 +82,26 @@
   .edit-btn:hover {
     background-color: var(--button-hover-secondary);
   }
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+  }
+  
+  .new-btn {
+    background-color: var(--primary-color-btn);
+    color: var(--text-white);
+    border: none;
+    padding: 0.4rem 1.2rem;
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: var(--box-shadow-btn);
+  }
+  
+  .new-btn:hover {
+    background-color: var(--button-hover);
+  }

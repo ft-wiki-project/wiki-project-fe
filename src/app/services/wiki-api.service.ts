@@ -55,4 +55,9 @@ export class WikiApiService {
     let data = await this.http.patch(`${this.baseUrl}/projects/${projectId}`, requestBody, httpOptions).toPromise();
     return data;
   }
+
+  async getTeamsByCompanyId(companyId: string) {
+    let data = await this.http.get(`${this.baseUrl}/teams/${companyId}`).toPromise();
+    return data;
+  }
 }
