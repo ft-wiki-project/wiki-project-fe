@@ -7,6 +7,7 @@ import { UserService } from '../services/user-service.service';
 interface Announcement {
   date: string;
   message: string;
+  title: string;
   author: {
     profile: {
       first: string,
@@ -23,19 +24,17 @@ interface Announcement {
 })
 
 export class AnnouncementsComponent {
-
   companyId: string = ''
   adminCompanyId: string = ''
   announcements: Announcement[] = [];
+  showCreateModal = false;
   
-
   constructor(
     private wikiApiService: WikiApiService, 
     private router: Router, 
     private userService: UserService
   ) {}
 
-  
   async ngOnInit() {
     if (this.isAdmin()) {
       this.adminCompanyId = localStorage.getItem('selectedCompanyId') || '';
@@ -50,6 +49,27 @@ export class AnnouncementsComponent {
   
       const data = await this.wikiApiService.getAnnoucements(this.companyId);
       this.announcements = data as Announcement[]
+    }
+  }
+
+  openCreateModal() {
+    this.showCreateModal = true;
+  }
+
+  closeCreateModal() {
+    this.showCreateModal = false;
+  }
+
+  async handleCreateAnnouncement(announcementData: any) {
+    try {
+      await this.wikiApiService.createAnnouncement(announcementData);
+      const data = await this.wikiApiService.getAnnoucements(
+        this.isAdmin() ? this.adminCompanyId : this.companyId
+      );
+      this.announcements = data as Announcement[];
+      this.showCreateModal = false;
+    } catch (error) {
+      console.error('Error creating announcement:', error);
     }
   }
 
