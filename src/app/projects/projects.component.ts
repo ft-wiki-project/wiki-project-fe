@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WikiApiService } from '../services/wiki-api.service';
+import { UserService } from '../services/user-service.service';
 
 interface Project {
   id: number;
@@ -20,10 +21,13 @@ export class ProjectsComponent {
   projects: Project[] = [];
   teamName: string = '';
   teamId: string = '';
+  showEditModal = false;
+  selectedProject: Project | null = null;
 
   constructor(
     private route: ActivatedRoute,
-    private wikiApiService: WikiApiService
+    private wikiApiService: WikiApiService,
+    private userService: UserService
   ) {}
 
   async ngOnInit() {
@@ -35,17 +39,49 @@ export class ProjectsComponent {
       this.teamId = params['teamId'];
       try {
         const data: any = await this.wikiApiService.getProjects(this.teamId);
-        this.projects = data;
+        this.projects = this.filterProjectsByUserRole(data);
       } catch (error) {
         console.error('Error loading projects:', error);
       }
     });
   }
 
+  private filterProjectsByUserRole(projects: Project[]): Project[] {
+  const isAdmin = this.isAdmin();
+  if (isAdmin) {
+    return projects;
+  }
+  return projects.filter(project => project.active);
+}
+
+  openEditModal(project: Project) {
+    this.selectedProject = { ...project };
+    this.showEditModal = true;
+  }
+
+  async handleSave(updatedProject: Project) {
+    console.log('Saving project:', updatedProject);
+    try {
+      await this.wikiApiService.updateProject(updatedProject.id.toString(), updatedProject);
+      const data: any = await this.wikiApiService.getProjects(this.teamId);
+      this.projects = this.filterProjectsByUserRole(data);
+      this.showEditModal = false;
+    } catch (error) {
+      console.error('Error updating project:', error);
+    }
+  }
+
+  closeModal() {
+    this.showEditModal = false;
+    this.selectedProject = null;
+  }
+
   isActive(status: string): boolean {
     return status.toUpperCase() === 'ACTIVE'
   }
 
-
-
+  isAdmin(): boolean {
+    const currentUser = this.userService.getCurrentUser();
+    return currentUser && currentUser.admin === "true";
+  }
 }
