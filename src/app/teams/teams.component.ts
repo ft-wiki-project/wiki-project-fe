@@ -44,13 +44,10 @@ export class TeamsComponent {
     const currentUser = this.userService.getCurrentUser();
     this.userId = currentUser.id;
 
-    this.adminCompanyId = currentUser.companies[0]?.id || '';
+    this.adminCompanyId = localStorage.getItem('selectedCompanyId') || '';
 
     if (this.isAdmin()) {
       try {
-        // need to refactor this to use admins currently slected company.
-        // likely getting it from local storage or userService
-        // For now, assuming the first company in the user's companies array
         const data: any = await this.wikiApiService.getTeamsByCompanyId(this.adminCompanyId);
         this.teams = data;
       } catch (error) {

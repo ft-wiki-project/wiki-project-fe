@@ -1,1 +1,15 @@
-<p>select-company works!</p>
+<div class="select-company-container">
+  <h1 class="page-title">Select Company</h1>
+  
+  <div class="select-wrapper">
+    <select 
+      [(ngModel)]="selectedCompanyId" 
+      (change)="onCompanySelect()"
+      [disabled]="!companies.length">
+      <option value="" disabled selected>Choose a company...</option>
+      <option *ngFor="let company of companies" [value]="company.id">
+        {{ company.name }}
+      </option>
+    </select>
+  </div>
+</div>

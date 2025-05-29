@@ -29,12 +29,21 @@ export class LoginComponent {
       this.message = 'Login successful!';
       this.messageType = 'success-message';
       setTimeout(() => {
-        this.router.navigate(['/announcements']);
+        if(this.isAdmin()) {
+          this.router.navigate(['/select-company']);
+        } else {
+          this.router.navigate(['/announcements']);
+        }
       }, 1000);
     } catch (error) {
       console.error('Login failed:', error);
       this.message = 'Login failed. Please check your username and password.';
       this.messageType = 'error-message';
     }
+  }
+
+  isAdmin(): boolean {
+    const currentUser = this.userService.getCurrentUser();
+    return currentUser && currentUser.admin === "true";
   }
 }
