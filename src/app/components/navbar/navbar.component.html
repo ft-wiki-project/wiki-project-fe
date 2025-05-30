@@ -14,10 +14,10 @@
   </div>
 
   <div class="nav-links" [class.active]="isMenuOpen">
-    <a routerLink="/announcements" routerLinkActive="active">Announcements</a>
-    <a *ngIf="isAdmin()" routerLink="/select-company" routerLinkActive="active">Company</a>
-    <a routerLink="/teams" routerLinkActive="active">Teams</a>
-    <a *ngIf="isAdmin()" routerLink="/user-registry" routerLinkActive="active">Users</a>
-    <a (click)="logout()" class="logout">Logout</a>
+    <a routerLink="/announcements" routerLinkActive="active" (click)="closeMenu()">Announcements</a>
+    <a *ngIf="isAdmin()" routerLink="/select-company" routerLinkActive="active" (click)="closeMenu()">Company</a>
+    <a routerLink="/teams" routerLinkActive="active" (click)="closeMenu()">Teams</a>
+    <a *ngIf="isAdmin()" routerLink="/user-registry" routerLinkActive="active" (click)="closeMenu()">Users</a>
+    <a (click)="logout(); closeMenu()" class="logout">Logout</a>
   </div>
 </nav>
