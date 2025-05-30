@@ -128,4 +128,17 @@ export class WikiApiService {
     let data = await this.http.post(`${this.baseUrl}/announcements`, requestBody, httpOptions).toPromise();
     return data;
   }
+
+  async updateUserStatus(userId: string, status: string) {
+    const requestBody = { status: status };
+
+    const httpOptions = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    let data = await this.http.patch(`${this.baseUrl}/users/${userId}`, requestBody, httpOptions).toPromise();
+    return data;
+  }
 }
