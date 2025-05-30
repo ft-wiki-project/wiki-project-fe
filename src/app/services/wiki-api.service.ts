@@ -142,6 +142,17 @@ export class WikiApiService {
     return data;
   }
 
+  async updateUser(userId: string, userData: any) {
+    const requestBody = userData;
+    const httpOptions = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    let data = await this.http.patch(`${this.baseUrl}/users/${userId}`, requestBody, httpOptions).toPromise();
+    return data;
+  }
+
   async editTeam(teamId: string, teamData: any) {
     const requestBody = teamData;
 

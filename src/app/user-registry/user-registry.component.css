@@ -86,6 +86,20 @@ tr:last-child td {
   margin-bottom: 1rem;
 }
 
+.edit-btn {
+  background-color: var(--primary-color-btn);
+  color: var(--text-white);
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.edit-btn:hover {
+  background-color: var(--button-hover);
+}
+
 @media screen and (max-width: 768px) {
   .registry-container {
     padding: 1rem;

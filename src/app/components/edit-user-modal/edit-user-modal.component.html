@@ -1,0 +1,59 @@
+<div class="modal-overlay">
+  <div class="modal-content">
+    <h2>Edit User</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="first">First Name</label>
+        <input type="text" id="first" [(ngModel)]="userData.profile.first" name="first" required>
+      </div>
+
+      <div class="form-group">
+        <label for="last">Last Name</label>
+        <input type="text" id="last" [(ngModel)]="userData.profile.last" name="last" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" [(ngModel)]="userData.profile.email" name="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" [(ngModel)]="userData.profile.phone" name="phone" required>
+      </div>
+
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" [(ngModel)]="userData.credentials.username" name="username" required>
+      </div>
+
+      <div class="form-group">
+        <label for="oldPassword">Old Password</label>
+        <input type="password" id="oldPassword" [(ngModel)]="oldPassword" name="oldPassword">
+      </div>
+
+      <div class="form-group">
+        <label for="newPassword">New Password</label>
+        <input type="password" id="newPassword" [(ngModel)]="newPassword" name="newPassword">
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm New Password</label>
+        <input type="password" id="confirmPassword" [(ngModel)]="confirmPassword" name="confirmPassword">
+      </div>
+
+      <div class="form-group">
+        <label for="admin">Make user an admin role?</label>
+        <select id="admin" [(ngModel)]="userData.admin" name="admin">
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+        </select>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="cancel-btn" (click)="onClose()">Cancel</button>
+        <button type="submit" class="save-btn">Save Changes</button>
+      </div>
+    </form>
+  </div>
+</div>
