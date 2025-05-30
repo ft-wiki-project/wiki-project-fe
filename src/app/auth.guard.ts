@@ -9,7 +9,6 @@ export const authGuard: CanActivateFn = (route, state) => {
     return true;
   }
   
-  // Redirect to login with message
   router.navigate([''], { 
     queryParams: { redirectMessage: 'You must be logged in to view that page' }
   });
