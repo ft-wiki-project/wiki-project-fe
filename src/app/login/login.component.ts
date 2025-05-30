@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { WikiApiService } from '../services/wiki-api.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../services/user-service.service';
 
 @Component({
@@ -19,8 +19,18 @@ export class LoginComponent {
   constructor(
     private wikiApiService: WikiApiService,
     private router: Router,
+    private route: ActivatedRoute,
     private userService: UserService
   ) { }
+
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      if (params['redirectMessage']) {
+        this.message = params['redirectMessage'];
+        this.messageType = 'error-message';
+      }
+    });
+  }
 
   async onSubmit() {
     try {
