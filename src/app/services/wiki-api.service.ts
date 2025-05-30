@@ -141,4 +141,28 @@ export class WikiApiService {
     let data = await this.http.patch(`${this.baseUrl}/users/${userId}`, requestBody, httpOptions).toPromise();
     return data;
   }
+
+  async editTeam(teamId: string, teamData: any) {
+    const requestBody = teamData;
+
+    const httpOptions = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    let data = await this.http.patch(`${this.baseUrl}/teams/${teamId}`, requestBody, httpOptions).toPromise();
+    return data;
+  }
+
+  async deleteTeam(teamId: string) {
+    const httpOptions = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    let data = await this.http.delete(`${this.baseUrl}/teams/${teamId}`, httpOptions).toPromise();
+    return data;
+  }
 }
