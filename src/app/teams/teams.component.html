@@ -8,8 +8,7 @@
         <a
           class="project-count"
           [routerLink]="['/projects']"
-          [queryParams]="{ teamName: team.name, teamId: team.id }"
-        >
+          [queryParams]="{ teamName: team.name, teamId: team.id }">
           # of Projects: {{ team.projects.length }}
         </a>
       </div>
@@ -20,6 +19,10 @@
             {{ user.profile.first }} {{ user.profile.last.charAt(0) }}.
           </span>
         </div>
+      </div>
+      <div class="team-actions">
+        <button class="edit-btn" *ngIf="isAdmin()" (click)="openEditModal(team)">Edit</button>
+        <button class="delete-btn" *ngIf="isAdmin()" (click)="handleDeleteTeam(team.id)">Delete</button>
       </div>
     </div>
     <div class="create-team-card" *ngIf="isAdmin()" (click)="openCreateModal()">
@@ -35,4 +38,13 @@
       (save)="handleCreateTeam($event)">
     </app-create-team-modal>
   </div>
+
+  <app-edit-team-modal
+    *ngIf="showEditModal && selectedTeam"
+    [team]="selectedTeam"
+    [companyUsers]="companyUsers"
+    [companyId]="adminCompanyId"
+    (close)="closeEditModal()"
+    (save)="handleEditTeam($event)">
+  </app-edit-team-modal>
 </div>

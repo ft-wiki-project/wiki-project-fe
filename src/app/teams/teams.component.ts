@@ -37,6 +37,8 @@ export class TeamsComponent {
   adminCompanyId: string = '';
   showCreateModal = false;
   companyUsers: User[] = [];
+  showEditModal = false;
+  selectedTeam: Team | null = null;
 
   constructor(
     private wikiApiService: WikiApiService,
@@ -91,6 +93,16 @@ export class TeamsComponent {
     this.showCreateModal = false;
   }
 
+  openEditModal(team: Team) {
+    this.selectedTeam = team;
+    this.showEditModal = true;
+  }
+
+  closeEditModal() {
+    this.showEditModal = false;
+    this.selectedTeam = null;
+  }
+
   async handleCreateTeam(teamData: any) {
     try {
       await this.wikiApiService.createTeam(teamData);
@@ -99,6 +111,33 @@ export class TeamsComponent {
       this.showCreateModal = false;
     } catch (error) {
       console.error('Error creating team:', error);
+    }
+  }
+
+  async handleEditTeam(teamData: any) {
+    try {
+      if (this.selectedTeam) {
+        await this.wikiApiService.editTeam(this.selectedTeam.id.toString(), teamData);
+        const data: any = await this.wikiApiService.getTeamsByCompanyId(this.adminCompanyId);
+        this.teams = data;
+        this.showEditModal = false;
+      }
+    } catch (error) {
+      console.error('Error editing team:', error);
+    }
+  }
+
+  async handleDeleteTeam(teamId: number) {
+    const isConfirmed = confirm('Are you sure you want to delete this team?');
+    
+    if (isConfirmed) {
+      try {
+        await this.wikiApiService.deleteTeam(teamId.toString());
+        const data: any = await this.wikiApiService.getTeamsByCompanyId(this.adminCompanyId);
+        this.teams = data;
+      } catch (error) {
+        console.error('Error deleting team:', error);
+      }
     }
   }
 }
