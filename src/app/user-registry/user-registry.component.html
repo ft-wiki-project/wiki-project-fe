@@ -11,6 +11,7 @@
           <th>Active</th>
           <th>Admin</th>
           <th>Status</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -33,13 +34,24 @@
               {{ user.status }}
             </span>
           </td>
+          <td>
+            <button class="edit-btn" (click)="openEditModal(user)">Edit</button>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
+
   <app-create-user-modal
     *ngIf="showCreateModal"
     (close)="closeCreateModal()"
     (save)="handleCreateUser($event)">
   </app-create-user-modal>
+
+  <app-edit-user-modal
+    *ngIf="showEditModal && selectedUser"
+    [user]="selectedUser"
+    (close)="closeEditModal()"
+    (save)="handleEditUser($event)">
+  </app-edit-user-modal>
 </div>
