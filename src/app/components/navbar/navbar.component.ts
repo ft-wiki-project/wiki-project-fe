@@ -57,4 +57,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
+
+  isLoggedIn(): boolean {
+    const user = this.userService.getCurrentUser();
+    return !!user && user.id !== undefined && user.id !== null;
+  }
 }
