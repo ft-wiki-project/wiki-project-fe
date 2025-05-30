@@ -17,6 +17,7 @@ import { CreateProjectModalComponent } from './components/create-project-modal/c
 import { CreateUserModalComponent } from './components/create-user-modal/create-user-modal.component';
 import { CreateTeamModalComponent } from './components/create-team-modal/create-team-modal.component';
 import { CreateAnnouncementModalComponent } from './components/create-announcement-modal/create-announcement-modal.component';
+import { EditTeamModalComponent } from './components/edit-team-modal/edit-team-modal.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { CreateAnnouncementModalComponent } from './components/create-announceme
     CreateProjectModalComponent,
     CreateUserModalComponent,
     CreateTeamModalComponent,
-    CreateAnnouncementModalComponent
+    CreateAnnouncementModalComponent,
+    EditTeamModalComponent
   ],
   imports: [
     BrowserModule,
