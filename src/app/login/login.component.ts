@@ -25,7 +25,8 @@ export class LoginComponent {
   async onSubmit() {
     try {
       const response = await this.wikiApiService.userLogin(this.username, this.password);
-      this.userService.updateUserData(response); // Use the service instead of directly setting localStorage
+      this.userService.updateUserData(response);
+      this.updateUserStatus()
       this.message = 'Login successful!';
       this.messageType = 'success-message';
       setTimeout(() => {
@@ -39,6 +40,20 @@ export class LoginComponent {
       console.error('Login failed:', error);
       this.message = 'Login failed. Please check your username and password.';
       this.messageType = 'error-message';
+    }
+  }
+
+  async updateUserStatus() {
+    const user = this.userService.getCurrentUser();
+
+    if (user && user.id && user.status === 'PENDING') {
+      try {
+        if (user && user.id) {
+          await this.wikiApiService.updateUserStatus(user.id, 'JOINED');
+        }
+      } catch (error) {
+        console.error('Failed to update user status:', error);
+      }
     }
   }
 
