@@ -22,15 +22,15 @@
 }
 
 select {
-  width: 80%;
+  width: 60%;
   padding: 1rem;
   border: 2px solid var(--border-color);
   border-radius: var(--border-radius);
   background-color: var(--bg-color-secondary);
-  color: var(--text-color-options);
+  color: var(--text-color-secondary);
   font-size: 1.1rem;
   cursor: pointer;
-  box-shadow: var(--box-shadow-sml);
+  box-shadow: var(--box-shadow-xs);
 }
 
 select:focus {

@@ -17,7 +17,11 @@
       <tbody>
         <tr *ngFor="let user of users">
           <td>{{ user.profile.first }} {{ user.profile.last }}</td>
-          <td>{{ user.profile.email }}</td>
+          <td>
+            <a [href]="'mailto:' + user.profile.email" class="email-link">
+              {{ user.profile.email }}
+            </a>
+          </td>
           <td>
             <span [class.active]="user.active === 'true'" [class.inactive]="user.active === 'false'">
               {{ user.active === 'true' ? 'Yes' : 'No' }}
