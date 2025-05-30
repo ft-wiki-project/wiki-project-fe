@@ -6,14 +6,24 @@ import { ProjectsComponent } from './projects/projects.component';
 import { TeamsComponent } from './teams/teams.component';
 import { SelectCompanyComponent } from './select-company/select-company.component';
 import { UserRegistryComponent } from './user-registry/user-registry.component';
+import { authGuard } from './auth.guard';
+import { adminGuard } from './admin.guard';
 
 const routes: Routes = [
   { path: "", component: LoginComponent },
-  { path: "announcements", component: AnnouncementsComponent },
-  { path: "projects", component: ProjectsComponent },
-  { path: "teams", component: TeamsComponent },
-  { path: "select-company", component: SelectCompanyComponent },
-  { path: "user-registry", component: UserRegistryComponent }
+  { path: "announcements", component: AnnouncementsComponent, canActivate: [authGuard] },
+  { path: "projects", component: ProjectsComponent, canActivate: [authGuard] },
+  { path: "teams", component: TeamsComponent, canActivate: [authGuard] },
+  { 
+    path: "select-company", 
+    component: SelectCompanyComponent, 
+    canActivate: [authGuard, adminGuard] 
+  },
+  { 
+    path: "user-registry", 
+    component: UserRegistryComponent, 
+    canActivate: [authGuard, adminGuard] 
+  }
 ];
 
 @NgModule({
